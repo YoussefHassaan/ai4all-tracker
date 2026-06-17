@@ -52,7 +52,7 @@ const WEEKS = [
     build: ["Add login endpoint", "Add JWT token auth", "Protect API routes"],
     done: ["Explain authentication vs authorization", "Secure an API endpoint"],
     project: { title: "Add auth to your Week 1 API", desc: "Add /login endpoint returning a JWT. Protect 3 routes so only authenticated users can access them. Test by passing token in headers." }
-  },~
+  },
   {
     num: 3, title: "Software Engineering Practices", subtitle: "Clean Code + SOLID",
     color: "#7C3AED", light: "#F5F3FF", emoji: "🏛️",
