@@ -14,14 +14,20 @@ const WEEKS = [
     learn: [
       { text: "REST APIs (requests/responses)", resources: [
         { type: "doc", label: "FastAPI official tutorial", url: "https://fastapi.tiangolo.com/tutorial/" },
-        { type: "video", label: "FastAPI crash course – Traversy Media", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA" },
+        { type: "video", label: "Sanjeev – Starting FastAPI (39:23)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=2363s" },
+        { type: "video", label: "Sanjeev – Schema Validation with Pydantic (1:07:29)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=4049s" },
+        { type: "video", label: "Sanjeev – CRUD Operations (1:22:45)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=4965s" },
       ]},
       { text: "HTTP methods (GET/POST/PUT/DELETE)", resources: [
         { type: "article", label: "HTTP methods explained – MDN", url: "https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods" },
+        { type: "video", label: "Sanjeev – HTTP Requests (57:34)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=3454s" },
       ]},
       { text: "SQL basics (tables, queries)", resources: [
         { type: "article", label: "SQLite + Python – Real Python", url: "https://realpython.com/python-sqlite-sqlalchemy/" },
         { type: "course", label: "SQL basics – SQLZoo (interactive)", url: "https://sqlzoo.net/wiki/SELECT_basics" },
+        { type: "video", label: "Sanjeev – Database Intro (2:24:11)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=8651s" },
+        { type: "video", label: "Sanjeev – First SQL Query (3:12:10)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=11530s" },
+        { type: "video", label: "Sanjeev – Database CRUD (4:08:00)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=14880s" },
       ]},
     ],
     build: ["Setup FastAPI project", "Create Employee API", "Add SQLite database", "Implement CRUD endpoints"],
@@ -40,13 +46,19 @@ const WEEKS = [
     learn: [
       { text: "FastAPI structure (routers, models)", resources: [
         { type: "doc", label: "FastAPI bigger applications – official", url: "https://fastapi.tiangolo.com/tutorial/bigger-applications/" },
+        { type: "video", label: "Sanjeev – FastAPI Routers (6:17:13)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=22633s" },
       ]},
       { text: "JWT authentication", resources: [
         { type: "article", label: "JWT explained – jwt.io", url: "https://jwt.io/introduction" },
         { type: "video", label: "FastAPI auth – Patrick Loeber", url: "https://www.youtube.com/watch?v=0A_GCXBCNUQ" },
+        { type: "video", label: "Sanjeev – JWT Token Basics (6:32:49)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=23569s" },
+        { type: "video", label: "Sanjeev – Login Process (6:47:03)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=24423s" },
+        { type: "video", label: "Sanjeev – Creating Token (7:00:44)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=25244s" },
       ]},
       { text: "OAuth basics (conceptual only)", resources: [
         { type: "doc", label: "FastAPI security docs", url: "https://fastapi.tiangolo.com/tutorial/security/" },
+        { type: "video", label: "Sanjeev – Verify user is Logged In (7:13:23)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=26003s" },
+        { type: "video", label: "Sanjeev – Protecting Routes (7:27:59)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=26879s" },
       ]},
     ],
     build: ["Add login endpoint", "Add JWT token auth", "Protect API routes"],
@@ -65,12 +77,16 @@ const WEEKS = [
     learn: [
       { text: "Clean Code principles", resources: [
         { type: "article", label: "Clean Code summary – gist", url: "https://gist.github.com/wojteklu/73f42606b3f93c72cb0e4b68db9b0e1d" },
+        { type: "video", label: "Sanjeev – Pydantic vs ORM Models (5:28:21)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=19701s" },
+        { type: "video", label: "Sanjeev – Cleanup main.py (8:50:46)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=31846s" },
       ]},
       { text: "SOLID principles (basic understanding)", resources: [
         { type: "article", label: "SOLID principles in Python – Real Python", url: "https://realpython.com/solid-principles-python/" },
       ]},
       { text: "Design patterns (Factory, Strategy)", resources: [
         { type: "article", label: "Python design patterns – Refactoring Guru", url: "https://refactoring.guru/design-patterns/python" },
+        { type: "video", label: "Sanjeev – Writing your first test (14:17:19)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=51439s" },
+        { type: "video", label: "Sanjeev – Fixtures (14:48:37)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=53317s" },
       ]},
     ],
     build: ["Refactor routers/ services/ models/ database/", "Add Pytest tests"],
@@ -93,6 +109,9 @@ const WEEKS = [
       ]},
       { text: "Docker Compose for multi-service apps", resources: [
         { type: "article", label: "Docker Compose best practices – testdriven.io", url: "https://testdriven.io/blog/docker-best-practices/" },
+        { type: "video", label: "Sanjeev – Dockerfile (13:26:09)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=48369s" },
+        { type: "video", label: "Sanjeev – Docker Compose (13:38:39)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=49119s" },
+        { type: "video", label: "Sanjeev – Postgres Container (13:48:34)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=49714s" },
       ]},
       { text: "Cloud concepts: VM, Storage, Networking, IAM", resources: [
         { type: "video", label: "Cloud Computing Explained – TechWorld with Nana", url: "https://www.youtube.com/watch?v=M988_fsOSWo" },
@@ -193,6 +212,9 @@ const WEEKS = [
       { text: "CI/CD basics", resources: [
         { type: "video", label: "CI/CD Explained – TechWorld with Nana", url: "https://www.youtube.com/watch?v=scEDHsr3APg" },
         { type: "doc", label: "GitHub Actions quickstart", url: "https://docs.github.com/en/actions/quickstart" },
+        { type: "video", label: "Sanjeev – CI/CD intro (17:34:15)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=63255s" },
+        { type: "video", label: "Sanjeev – Github Actions (17:43:29)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=63809s" },
+        { type: "video", label: "Sanjeev – Creating Jobs (17:49:32)", url: "https://www.youtube.com/watch?v=0sOvCWFmrtA&t=64172s" },
       ]},
       { text: "Logging / monitoring basics", resources: [
         { type: "doc", label: "FastAPI logging – official", url: "https://fastapi.tiangolo.com/tutorial/handling-errors/" },
