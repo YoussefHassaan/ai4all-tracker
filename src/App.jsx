@@ -89,11 +89,13 @@ const WEEKS = [
     learn: [
       { text: "FastAPI + Docker (new even if you know Docker)", resources: [
         { type: "doc", label: "FastAPI Docker guide – official", url: "https://fastapi.tiangolo.com/deployment/docker/" },
+        { type: "video", label: "Docker Tutorial for Beginners – TechWorld with Nana", url: "https://www.youtube.com/watch?v=3c-iBn73dDE" },
       ]},
       { text: "Docker Compose for multi-service apps", resources: [
         { type: "article", label: "Docker Compose best practices – testdriven.io", url: "https://testdriven.io/blog/docker-best-practices/" },
       ]},
       { text: "Cloud concepts: VM, Storage, Networking, IAM", resources: [
+        { type: "video", label: "Cloud Computing Explained – TechWorld with Nana", url: "https://www.youtube.com/watch?v=M988_fsOSWo" },
         { type: "article", label: "GCP free tier overview", url: "https://cloud.google.com/free/docs/free-cloud-features" },
         { type: "doc", label: "AWS cloud concepts – official", url: "https://aws.amazon.com/getting-started/cloud-essentials/" },
       ]},
@@ -189,6 +191,7 @@ const WEEKS = [
     ],
     learn: [
       { text: "CI/CD basics", resources: [
+        { type: "video", label: "CI/CD Explained – TechWorld with Nana", url: "https://www.youtube.com/watch?v=scEDHsr3APg" },
         { type: "doc", label: "GitHub Actions quickstart", url: "https://docs.github.com/en/actions/quickstart" },
       ]},
       { text: "Logging / monitoring basics", resources: [
@@ -237,6 +240,31 @@ function loadState() {
 function saveState(s) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch {}
 }
+function todayStr() {
+  return new Date().toISOString().slice(0, 10);
+}
+function loadStreak() {
+  try {
+    const raw = localStorage.getItem("ai4all_streak");
+    return raw ? JSON.parse(raw) : { count: 0, lastDate: null };
+  } catch { return { count: 0, lastDate: null }; }
+}
+function updateStreak(prevChecks, nextChecks) {
+  const anyChecked = Object.values(nextChecks).some(v =>
+    Array.isArray(v) ? v.some(Boolean) : false
+  );
+  if (!anyChecked) return loadStreak();
+  const today = todayStr();
+  const streak = loadStreak();
+  if (streak.lastDate === today) return streak;
+  const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+  const yStr = yesterday.toISOString().slice(0, 10);
+  const newCount = streak.lastDate === yStr ? streak.count + 1 : 1;
+  const next = { count: newCount, lastDate: today };
+  localStorage.setItem("ai4all_streak", JSON.stringify(next));
+  return next;
+}
+
 function initState() {
   const saved = loadState();
   if (saved) return saved;
@@ -288,8 +316,13 @@ export default function App() {
   const [activeWeek, setActiveWeek] = useState(1);
   const [activeTab, setActiveTab] = useState("roadmap");
   const [weekTab, setWeekTab] = useState("learn");
+  const [streak, setStreak] = useState(loadStreak);
 
-  useEffect(() => { saveState(checks); }, [checks]);
+  useEffect(() => {
+    saveState(checks);
+    const next = updateStreak({}, checks);
+    setStreak(next);
+  }, [checks]);
 
   function toggle(key, idx) {
     setChecks(prev => { const a = [...(prev[key] || [])]; a[idx] = !a[idx]; return { ...prev, [key]: a }; });
@@ -349,11 +382,21 @@ export default function App() {
               <div style={{ fontWeight: 700, fontSize: 16 }}>AI4All Career Transition Plan</div>
               <div style={{ fontSize: 11, color: "#64748B" }}>Embedded Linux → AI Application Engineer · 8 Weeks</div>
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <ProgressRing pct={overallPct()} color="#1A56DB" size={40} />
-              <div>
-                <div style={{ fontSize: 18, fontWeight: 700, color: "#1A56DB", lineHeight: 1 }}>{overallPct()}%</div>
-                <div style={{ fontSize: 10, color: "#64748B" }}>overall</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 6, background: streak.count > 0 ? "#FFF7ED" : "#F8FAFC",
+                border: `1.5px solid ${streak.count > 0 ? "#FED7AA" : "#E2E8F0"}`, borderRadius: 10, padding: "6px 12px" }}>
+                <span style={{ fontSize: 18 }}>🔥</span>
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: 800, color: streak.count > 0 ? "#EA580C" : "#9CA3AF", lineHeight: 1 }}>{streak.count}</div>
+                  <div style={{ fontSize: 10, color: "#64748B" }}>day streak</div>
+                </div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <ProgressRing pct={overallPct()} color="#1A56DB" size={40} />
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: "#1A56DB", lineHeight: 1 }}>{overallPct()}%</div>
+                  <div style={{ fontSize: 10, color: "#64748B" }}>overall</div>
+                </div>
               </div>
             </div>
           </div>
